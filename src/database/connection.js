@@ -1,11 +1,20 @@
-import sql from 'mssql'
+import sql from "mssql";
 
-const dbsettings={
-    user:'sa',
-    password: '2020Bogota=',
-    server: '192.168.1.215',
-    database:'TestDB'
+const dbSettings = {
+    user: 'DB_USER',
+    password: 'DBPASSWORD=',
+    server: 'DB_SERVER',
+    database: 'DB_DATABASE'
 
 }
 
-sql.connect()
+async function getConnection() {
+
+    const pool = await sql.connect(dbSettings)
+    const result = await pool.request().query('SELECT 1');
+    console.log(reuslt);
+
+}
+
+getConnection();
+
