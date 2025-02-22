@@ -1,20 +1,26 @@
 import sql from "mssql";
 
 const dbSettings = {
-    user: 'DB_USER',
-    password: 'DBPASSWORD=',
-    server: 'DB_SERVER',
-    database: 'DB_DATABASE'
+    user: 'david',
+    password: 'SISCP4102',
+    server: 'localhost',
+    database: 'webstore',
+    options: {
+        encrypt: true,
+        trustServerCertificate: true,
+    },
+
+
 
 }
 
-async function getConnection() {
-
-    const pool = await sql.connect(dbSettings)
-    const result = await pool.request().query('SELECT 1');
-    console.log(reuslt);
-
+export async function getConnection() {
+    try {
+        const pool = await sql.connect(dbSettings)
+        return pool;
+    } catch (error) {
+        console.error(error);
+    }
 }
 
-getConnection();
 
