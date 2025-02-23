@@ -11,8 +11,7 @@ POST  {{api}}
 Content-Type: application/json
 
 {
-
-    "name": "microphone",
-    "description": "LG"
+"name": "microfono",
+"description": "LG"
 
 }
