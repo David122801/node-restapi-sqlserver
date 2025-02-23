@@ -1,15 +1,16 @@
-import { getConnection, sql } from '../database/connection'
+import { getConnection, queries, sql } from '../database'
 
 
 export const getProducts = async (req, res) => {
+    try {
 
-
-    const pool = await getConnection();
-    const result = await pool.request().query("SELECT * FROM Products");
-
-    res.json(result.recordset);
-
-
+        const pool = await getConnection();
+        const result = await pool.request().query(queries.getAllProducts);
+        res.json(result.recordset);
+    } catch (error) {
+        res.status(500);
+        res.senf(error.message);
+    }
 };
 
 
@@ -21,13 +22,28 @@ export const createNewProduct = async (req, res) => {
     if (name == null || description == null) {
         return res.status(400).json({ msg: 'Bad request. por favore llena todos los campos' })
     }
-
     if (quantity == null) quantity = 0;
 
+    try {
+        const pool = await getConnection();
+
+        await pool.request()
+            .input("name", sql.VarChar, name)
+            .input("description", sql.Text, description)
+            .input("quantity", sql.Int, quantity)
+            .query(queries.addNewProduct)
+
+        res.json({ name, description, quantity });
+    } catch (error) {
+        res.status(500);
+        res.senf(error.message);
+    }
+
+};
+
+export const getProductById = async (req, res) => {
+    const { id } = req.params
     const pool = await getConnection();
-
-    await pool.request().input("name", sql.VarChar, "ProductTest").query('INSERT INTO Products (name) VALUES (@name)')
-
-    console.log(name, description, quantity);
-    res.json('new product!!!')
+    const result = await pool.request().input("Id", id).query(queries.getProductById);
+    res.send(result.recordset[0]);
 }

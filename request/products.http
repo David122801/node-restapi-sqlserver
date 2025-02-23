@@ -11,7 +11,11 @@ POST  {{api}}
 Content-Type: application/json
 
 {
-"name": "microfono",
-"description": "LG"
-
+"name": "celular",
+"description": "Vivo",
+"quantity": 100
 }
+
+###
+
+GET {{api}}/2
