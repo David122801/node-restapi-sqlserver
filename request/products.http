@@ -18,4 +18,26 @@ Content-Type: application/json
 
 ###
 
-GET {{api}}/4
+GET {{api}}/7
+
+### Delete
+
+
+DELETE {{api}}/1
+
+### contador productos
+
+
+GET {{api}}/count
+
+
+###
+
+PUT {{api}}/7
+Content-Type: application/json
+
+{
+"name": "xbox",
+"description": "consola video juegos",
+"quantity": 50
+}

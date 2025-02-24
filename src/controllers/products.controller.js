@@ -9,7 +9,7 @@ export const getProducts = async (req, res) => {
         res.json(result.recordset);
     } catch (error) {
         res.status(500);
-        res.senf(error.message);
+        res.send(error.message);
     }
 };
 
@@ -51,9 +51,42 @@ export const getProductById = async (req, res) => {
 
 export const deleteProductById = async (req, res) => {
 
-const {id} = req.params
-const pool = await getConnection();
-const result = await pool.request().input("Id" , id).query(queries.deleteProductById);
-res.send(result.recordset[0]);
+    const { id } = req.params;
+    const pool = await getConnection();
+    const result = await pool.request().input("Id", id).query(queries.deleteProductById);
+    res.sendStatus(204);
+
+}
+
+export const getTotalProducts = async (req, res) => {
+
+
+    const pool = await getConnection();
+    const result = await pool.request().query(queries.getTotalProducts);
+    res.json(result.recordset[0]['']);
+
+}
+
+
+export const updateProductsById = async (req, res) => {
+
+
+    const { name, description, quantity } = req.body;
+    const { id } = req.params;
+
+    if (name == null || description == null, quantity == null) {
+        return res.status(400).json({ msg: 'Bad request. por favore llena todos los campos' })
+    }
+
+    const pool = await getConnection();
+    await pool
+        .request()
+        .input('name', sql.VarChar, name)
+        .input('description', sql.Text, description)
+        .input('quantity', sql.Int, quantity)
+        .input('id', sql.Int, id)
+        .query(queries.updateProductsById);
+
+    res.json({ name, description, quantity })
 
 }
