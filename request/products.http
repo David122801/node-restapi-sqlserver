@@ -18,4 +18,4 @@ Content-Type: application/json
 
 ###
 
-GET {{api}}/2
+GET {{api}}/4

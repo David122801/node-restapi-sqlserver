@@ -47,3 +47,13 @@ export const getProductById = async (req, res) => {
     const result = await pool.request().input("Id", id).query(queries.getProductById);
     res.send(result.recordset[0]);
 }
+
+
+export const deleteProductById = async (req, res) => {
+
+const {id} = req.params
+const pool = await getConnection();
+const result = await pool.request().input("Id" , id).query(queries.deleteProductById);
+res.send(result.recordset[0]);
+
+}
