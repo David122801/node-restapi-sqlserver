@@ -81,10 +81,10 @@ export const updateProductsById = async (req, res) => {
     const pool = await getConnection();
     await pool
         .request()
-        .input('name', sql.VarChar, name)
-        .input('description', sql.Text, description)
-        .input('quantity', sql.Int, quantity)
-        .input('id', sql.Int, id)
+        .input("name", sql.VarChar, name)
+        .input("description", sql.Text, description)
+        .input("quantity", sql.Int, quantity)
+        .input("Id", sql.Int, id)
         .query(queries.updateProductsById);
 
     res.json({ name, description, quantity })

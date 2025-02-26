@@ -1,4 +1,4 @@
-import { deleteProductById, getProductById } from "../controllers/products.controller";
+import { deleteProductById, getProductById, updateProductsById } from "../controllers/products.controller";
 
 
 

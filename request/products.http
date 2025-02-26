@@ -11,19 +11,19 @@ POST  {{api}}
 Content-Type: application/json
 
 {
-"name": "celular",
-"description": "Vivo",
-"quantity": 100
+"name": "tocadiscos",
+"description": "Profesional",
+"quantity": 9898
 }
 
 ###
 
-GET {{api}}/7
+GET {{api}}/3
 
 ### Delete
 
 
-DELETE {{api}}/1
+DELETE {{api}}/12
 
 ### contador productos
 
@@ -33,7 +33,7 @@ GET {{api}}/count
 
 ###
 
-PUT {{api}}/7
+PUT {{api}}/3
 Content-Type: application/json
 
 {
